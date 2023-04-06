@@ -35,3 +35,31 @@ for (let i = 0; i < number.length; i++) {
     }
   });
 }
+
+// adding click handlers to operators buttons
+for (let i = 0; i < operator.length; i++) {
+  operator[i].addEventListener("click", function (e) {
+    // storing current input string and its last character in variables - used later
+    var currentString = input.innerHTML;
+    var lastChar = currentString[currentString.length - 1];
+
+    // if last character entered is an operator, replace it with the currently pressed one
+    if (
+      lastChar === "+" ||
+      lastChar === "-" ||
+      lastChar === "×" ||
+      lastChar === "÷"
+    ) {
+      var newString =
+        currentString.substring(0, currentString.length - 1) +
+        e.target.innerHTML;
+      input.innerHTML = newString;
+    } else if (currentString.length == 0) {
+      // if first key pressed is an opearator, don't do anything
+      console.log("enter a number first");
+    } else {
+      // else just add the operator pressed to the input
+      input.innerHTML += e.target.innerHTML;
+    }
+  });
+}
